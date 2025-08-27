@@ -1,43 +1,1199 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Norfatin Hazirah - UX Designer</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      xintegrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      xintegrity="sha512-Fo3rlrZj/k7Tj+A4w6/k9p/1W/88/p+p/a9W0zL15jL4n8fA7FzM8P3d2x9G9R5A/m7D/8Fw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        background-color: #f5f3ef;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+      }
+      .header-section {
+        background-color: #e9e4d9;
+        color: #333333;
+      }
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 4px solid #fff;
+        border-radius: 50%;
+      }
+      .progress-bar-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+      .list-group-item h5 {
+        font-weight: 600;
+      }
+      .card {
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+        border: none;
+      }
+      .text-bold {
+        font-weight: bold;
+      }
+      .progress-bar-ux {
+        background-color: #00796b;
+      }
+      .progress-bar-tools {
+        background-color: #ff7043;
+      }
+      .contact-link {
+        text-decoration: none;
+        color: inherit;
+      }
+      .highlight {
+        background-color: #fbe521;
+        padding: 2px;
+        border-radius: 4px;
+        animation: highlight-flicker 1.5s ease-in-out forwards;
+      }
+      @keyframes highlight-flicker {
+        0% {
+          background-color: #fbe521;
+          box-shadow: 0 0 5px #fbe521;
+        }
+        25% {
+          background-color: transparent;
+          box-shadow: none;
+        }
+        50% {
+          background-color: #fbe521;
+          box-shadow: 0 0 10px #fbe521;
+        }
+        75% {
+          background-color: transparent;
+          box-shadow: none;
+        }
+        100% {
+          background-color: transparent;
+          box-shadow: none;
+        }
+      }
+      .project-card {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+      #searchMessage {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 1rem;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      #searchMessage.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      @media (min-width: 992px) {
+        .summary-col {
+          width: 30% !important;
+          flex: 0 0 auto !important;
+        }
+        .education-col {
+          width: 70% !important;
+          flex: 0 0 auto !important;
+        }
+      }
+      .modal-hero-img-container {
+        width: 100%;
+        height: 400px;
+        background-color: #ccc;
+        object-fit: contain;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #555;
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+      .modal-hero-img-container img {
+        width: auto;
+        height: 400px;
+        object-fit: contain;
+      }
+      .overview-list li {
+        margin-bottom: 1rem;
+      }
+      /* New CSS for the skills tags in the modal */
+      .skill-tag {
+        display: inline-block;
+        background-color: #e0e0e0;
+        color: #555;
+        padding: 0.3rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      /* New CSS to fix the height and object-fit for project card images */
+      .card-img-top {
+        height: 300px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg"
+      style="background-color: #4b4b4b"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Norfatin Hazirah</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Resume.pdf" target="_blank">Resume</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                More
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#education">Education</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#experience">Experience</a>
+                </li>
+                <li><a class="dropdown-item" href="#projects">Project</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#contact">Contact</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search" id="searchForm">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              id="searchInput"
+            />
+            <button class="btn btn-link text-decoration-none" type="submit">
+              <i class="fas fa-search text-secondary"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
 
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+    <!-- Header Section with profile image and summary -->
+    <header class="header-section text-center text-md-start py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-3 text-center">
+            <img
+              src="D.png"
+              class="rounded-circle img-fluid profile-img"
+              alt="Profile Picture"
+            />
+          </div>
+          <div class="col-md-9 mt-4 mt-md-0">
+            <h1 class="display-4 text-bold">Norfatin Hazirah Mohd Idris</h1>
+            <p class="lead">UX / Product Designer</p>
+            <hr class="my-2" style="background-color: #333333" />
+            <div
+              class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start"
+            >
+              <span class="me-md-3 mb-2 mb-md-0"
+                ><i class="fas fa-map-marker-alt"></i> Johor Bahru, Johor</span
+              >
+              <span>
+                <i class="fas fa-envelope"></i>
+                <a
+                  href="mailto:norfatinhazirahmohdidris@yahoo.com"
+                  class="contact-link"
+                >
+                  norfatinhazirahmohdidris@yahoo.com
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    <!-- Main Content Container for the portfolio sections -->
+    <main class="container py-5">
+      <!-- Row for Summary and Education, side-by-side and equal height on larger screens -->
+      <div class="row mb-4">
+        <div
+          class="col-lg-12 col-md-12 col-sm-12 col-xl-4 mb-4 mb-lg-0 summary-col"
+        >
+          <div class="card p-4 h-100 d-flex flex-column">
+            <h4 class="card-title text-bold">Career Objective</h4>
+            <div class="d-flex flex-column justify-content-center flex-grow-1">
+              <p class="text-justify fs-5 fs-xl-4">
+                Creative and detail-oriented professional with a strong
+                foundation in mechanical engineering and hands-on training in UX
+                design. Proven ability to apply user-focused thinking to complex
+                engineering processes, with skills in problem-solving, research,
+                and documentation. Eager to leverage technical background and
+                user experience principles to design intuitive and effective
+                products.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-8 education-col">
+          <div class="card p-4 h-100" id="education">
+            <h4 class="card-title text-bold">Education</h4>
+            <ul class="list-group list-group-flush mt-3">
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5>TalentLabs K-Youth Development Programme</h5>
+                  <small class="text-muted text-nowrap"
+                    >Aug 2025 - Present</small
+                  >
+                </div>
+                <h6 class="text-secondary">UX Design</h6>
+                <ul class="mt-2" style="list-style-type: disc">
+                  <li>
+                    Hands-on training in UX principles, Figma prototyping, and
+                    user research techniques.
+                  </li>
+                  <li>
+                    Built responsive UI concepts with HTML, CSS, and Bootstrap.
+                  </li>
+                  <li>
+                    Applied design insights using Google Analytics and Tableau.
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5>Universiti Teknologi Malaysia (MJIIT)</h5>
+                  <small class="text-muted text-nowrap">Mar 2025</small>
+                </div>
+                <h6 class="text-secondary">
+                  Bachelor in Mechanical Precision Engineering
+                </h6>
+                <p class="mb-1">
+                  Final Year Project: Underwater Colour Correction for Enhanced
+                  Object Detection
+                </p>
+                <p class="mb-0">CGPA: 3.12/4.00</p>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5>Politeknik Ibrahim Sultan</h5>
+                  <small class="text-muted text-nowrap">Jan 2021</small>
+                </div>
+                <h6 class="text-secondary">
+                  Diploma in Mechanical Engineering
+                </h6>
+                <p class="mb-1">
+                  Final Year Project: Escalera Estable – Designed an ergonomic
+                  ladder with levelling and safety features for use on edges and
+                  uneven surfaces.
+                </p>
+                <p class="mb-0">CGPA: 3.75/4.00</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+      <!-- New row for the expanded Experience section -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card p-4 mb-4" id="experience">
+            <h4 class="card-title text-bold">Experience</h4>
+            <ul class="list-group list-group-flush mt-3">
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5>VS Industry Sdn. Bhd.</h5>
+                  <small class="text-muted text-nowrap"
+                    >Jul 2024-Oct 2024</small
+                  >
+                </div>
+                <h6 class="text-secondary">Quality Engineering Intern</h6>
+                <ul class="mt-2" style="list-style-type: disc">
+                  <li>
+                    Performed over 150+ product inspections with visual and
+                    dimensional evaluation, enhancing attention to detail and
+                    user-centric quality standards.
+                  </li>
+                  <li>
+                    Documented quality outcomes with high data accuracy —
+                    aligning with real-world user data tracking, enabling
+                    traceable insights for engineers and decision-makers.
+                  </li>
+                  <li>
+                    Collaborated with cross-functional teams to support ISO
+                    9001:2015 systems, emphasising design clarity and
+                    consistency.
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5>Texas Instruments Electronics Malaysia</h5>
+                  <small class="text-muted text-nowrap"
+                    >Mar 2021-Jul 2021</small
+                  >
+                </div>
+                <h6 class="text-secondary">Technician Intern</h6>
+                <ul class="mt-2" style="list-style-type: disc">
+                  <li>
+                    Conducted daily maintenance on 40+ machines die-attach
+                    machines, reducing downtime by 20% and ensuring consistent
+                    operator experience.
+                  </li>
+                  <li>
+                    Installed and aligned 15+ machines for new packages by
+                    interpreting visual diagrams and conducting precise
+                    component setups, improving ease-of-use for operators and
+                    production efficiency by 15%.
+                  </li>
+                  <li>
+                    Proposed layout improvements after observing technician
+                    challenges, streamlining workflow and reducing navigation
+                    errors.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+      <!-- Project Section -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card p-4" id="projects">
+            <h4 class="card-title text-bold">Project</h4>
+            <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
+              <!-- Project 1 -->
+              <div class="col">
+                <a
+                  class="project-card"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal1"
+                >
+                  <div class="card h-100">
+                    <img
+                      src="web.png"
+                      class="card-img-top img-fluid"
+                      alt="Portfolio Website Project"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        Responsive Portfolio Website
+                        <small class="text-muted float-end">Aug 2025</small>
+                      </h5>
+                      <p class="card-text text-justify mt-2">
+                        Designed and developed a personal portfolio website
+                        using HTML, CSS, and Bootstrap. Implemented responsive
+                        design principles to ensure a seamless experience across
+                        desktop, tablet, and mobile devices. Showcased various
+                        design projects and case studies, highlighting the
+                        end-to-end UX process.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+              <!-- Project 2 -->
+              <div class="col">
+                <a
+                  class="project-card"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal2"
+                >
+                  <div class="card h-100">
+                    <img
+                      src="zerog-model.jpg"
+                      class="card-img-top img-fluid"
+                      alt="Zero-G Harvester"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        Zero-G Harvester
+                        <small class="text-muted float-end">Jan 2025</small>
+                      </h5>
+                      <p class="card-text text-justify mt-2">
+                        Designed and prototyped an all-terrain, battery-powered
+                        harvester to reduce worker fatigue and increase
+                        efficiency in the palm oil industry. The ZERO-G
+                        Harvester utilizes a spring balancer to offset the
+                        weight of the motorized cutter, allowing for easy
+                        navigation and improved ergonomics for plantation
+                        workers.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Project 3 -->
+              <div class="col">
+                <a
+                  class="project-card"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal3"
+                >
+                  <div class="card h-100">
+                    <img
+                      src="fyp-talk.jpg"
+                      class="card-img-top img-fluid"
+                      alt="Underwater Colour Correction"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        Underwater Colour Correction for Enhanced Object
+                        Detection
+                        <small class="text-muted float-end">Feb 2025</small>
+                      </h5>
+                      <p class="card-text text-justify mt-2">
+                        Developed and determined algorithms that uses deep
+                        learning and advanced image processing to enhance
+                        underwater images and improve the accuracy of object
+                        detection. The project compared traditional methods
+                        (CLAHE) with deep learning (CycleGAN) to demonstrate how
+                        restoring color and contrast leads to more effective
+                        object identification in challenging underwater
+                        environments.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Skills Section -->
+    <section class="container mb-5">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card p-4">
+            <h4 class="card-title text-bold mb-4">Skills</h4>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <p class="progress-bar-title">UX/UI Design</p>
+                <div class="progress" style="height: 15px">
+                  <div
+                    class="progress-bar progress-bar-ux"
+                    role="progressbar"
+                    style="width: 90%"
+                    aria-valuenow="90"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <p class="progress-bar-title">HTML/CSS</p>
+                <div class="progress" style="height: 15px">
+                  <div
+                    class="progress-bar progress-bar-tools"
+                    role="progressbar"
+                    style="width: 85%"
+                    aria-valuenow="85"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <p class="progress-bar-title">User Research</p>
+                <div class="progress" style="height: 15px">
+                  <div
+                    class="progress-bar progress-bar-ux"
+                    role="progressbar"
+                    style="width: 80%"
+                    aria-valuenow="80"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <p class="progress-bar-title">Google Analytics</p>
+                <div class="progress" style="height: 15px">
+                  <div
+                    class="progress-bar progress-bar-tools"
+                    role="progressbar"
+                    style="width: 75%"
+                    aria-valuenow="75"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <!-- New Mechanical Skills -->
+              <div class="col-md-6 mb-3">
+                <p class="progress-bar-title">Mechanical Engineering</p>
+                <div class="progress" style="height: 15px">
+                  <div
+                    class="progress-bar progress-bar-mechanical"
+                    role="progressbar"
+                    style="width: 90%"
+                    aria-valuenow="90"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <p class="progress-bar-title">Quality Assurance</p>
+                <div class="progress" style="height: 15px">
+                  <div
+                    class="progress-bar progress-bar-mechanical"
+                    role="progressbar"
+                    style="width: 85%"
+                    aria-valuenow="85"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <p class="progress-bar-title">Technical Documentation</p>
+                <div class="progress" style="height: 15px">
+                  <div
+                    class="progress-bar progress-bar-mechanical"
+                    role="progressbar"
+                    style="width: 80%"
+                    aria-valuenow="80"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Me Section -->
+    <section class="container mb-5" id="contact">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card p-4 text-center">
+            <h4 class="card-title text-bold mb-4">Connect With Me</h4>
+            <p class="mb-4">
+              Feel free to reach out to me on my social media accounts below.
+              I'm always open to new opportunities and collaborations!
+            </p>
+            <!-- Social media icons for the contact section -->
+            <div class="d-flex justify-content-center">
+              <a
+                href="https://www.linkedin.com/in/fatin-04-20/"
+                target="_blank"
+                class="text-dark mx-3"
+                aria-label="LinkedIn Profile"
+              >
+                <i class="fab fa-linkedin fa-2x"></i>
+              </a>
+              <a
+                href="mailto:norfatinhazirahmohdidris@yahoo.com"
+                target="_blank"
+                class="text-dark mx-3"
+                aria-label="Email"
+              >
+                <i class="fas fa-envelope fa-2x"></i>
+              </a>
+              <a
+                href="https://calendly.com/norfatinhazirahmohdidris"
+                target="_blank"
+                class="text-dark mx-3"
+                aria-label="Book an Appointment"
+              >
+                <i class="fas fa-calendar-check fa-2x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: #4b4b4b; color: #fff; padding: 2rem 0">
+      <div class="container">
+        <div
+          class="d-flex flex-column flex-md-row justify-content-between align-items-center text-center"
+        >
+          <!-- Copyright text -->
+          <div class="mb-3 mb-md-0">
+            &copy; 2025 Norfatin Hazirah. All rights reserved.
+          </div>
+          <!-- Social media icons in the footer -->
+          <div class="d-flex">
+            <a
+              href="https://www.linkedin.com/in/fatin-04-20/"
+              target="_blank"
+              class="text-white mx-2"
+              aria-label="LinkedIn"
+            >
+              <i class="fab fa-linkedin fa-lg"></i>
+            </a>
+            <a
+              href="mailto:norfatinhazirahmohdidris@yahoo.com"
+              target="_blank"
+              class="text-white mx-2"
+              aria-label="Email"
+            >
+              <i class="fas fa-envelope fa-lg"></i>
+            </a>
+            <a
+              href="https://calendly.com/norfatinhazirahmohdidris"
+              target="_blank"
+              class="text-white mx-2"
+              aria-label="Book an Appointment"
+            >
+              <i class="fas fa-calendar-check fa-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Search message popup -->
+    <div id="searchMessage"></div>
+
+    <!-- Modals for each project to show detailed content -->
+
+    <!-- Modal 1: Responsive Portfolio Website -->
+    <div
+      class="modal fade"
+      id="projectModal1"
+      tabindex="-1"
+      aria-labelledby="projectModal1Label"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectModal1Label">
+              Responsive Portfolio Website
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- Project Hero Image Section -->
+            <div class="modal-hero-img-container mb-4">
+              <img
+                src="web.png"
+                class="img-fluid"
+                alt="Portfolio Website Project Hero"
+              />
+            </div>
+            <!-- Project Details Section -->
+            <div class="row">
+              <!-- Project Overview Column -->
+              <div class="col-12 col-md-4 mb-4">
+                <div class="card p-4 h-100">
+                  <h4 class="text-bold mb-3">Project Overview</h4>
+                  <ul class="list-unstyled overview-list">
+                    <li>
+                      <h6 class="text-bold">My Role:</h6>
+                      <p class="mb-0">UX/UI Designer</p>
+                    </li>
+                    <li>
+                      <h6 class="text-bold">Team Size:</h6>
+                      <p class="mb-0">Individual Project</p>
+                    </li>
+                    <li>
+                      <h6 class="text-bold">Tools:</h6>
+                      <p class="mb-0">VS Code, Bootstrap</p>
+                    </li>
+                    <li>
+                      <h6 class="text-bold">Duration:</h6>
+                      <p class="mb-0">2 Weeks</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- The Challenge & My Role Column -->
+              <div class="col-12 col-md-8 mb-4">
+                <div class="card p-4 h-100">
+                  <h4 class="text-bold mb-3">Details</h4>
+                  <p class="text-justify">
+                    In this project, I set out to design and build a personal
+                    portfolio website from scratch. The primary challenge was to
+                    create a modern, clean, and fully responsive site that
+                    effectively showcases my UX/UI skills and highlights my case
+                    studies. I focused on building the site with clean, semantic
+                    code using HTML, CSS, and the Bootstrap framework.
+                  </p>
+                  <p class="text-justify mb-0">
+                    My goal was to ensure the site was not only visually
+                    appealing but also easy to navigate on any device, providing
+                    a seamless experience for recruiters and potential
+                    collaborators. This required me to constantly balance the
+                    visual design with technical feasibility. I had to ensure
+                    the site's layout and components were not only aesthetically
+                    pleasing but also fully responsive and functional on
+                    different screen sizes without compromising performance.
+                    Additionally, the tight two-week deadline meant I had to
+                    manage my time effectively and prioritize tasks to complete
+                    the project successfully.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- New Skills Section -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="card p-4 h-100">
+                  <h4 class="text-bold mb-3">Skills</h4>
+                  <div>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">Web Development</span>
+                    <span class="skill-tag">UI/UX Design</span>
+                    <span class="skill-tag">Prototyping</span>
+                    <span class="skill-tag">Visual Design</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: E-commerce Redesign -->
+    <div
+      class="modal fade"
+      id="projectModal2"
+      tabindex="-1"
+      aria-labelledby="projectModal2Label"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectModal2Label">
+              All-Terrain ZERO-Gravity Harvester
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- Project Hero Image Section -->
+            <div class="modal-hero-img-container mb-4">
+              <img
+                src="zerog-usage.png"
+                class="img-fluid"
+                alt="ZERO-Gravity Harvester"
+              />
+            </div>
+            <!-- Project Details Section -->
+            <div class="row">
+              <!-- Project Overview Column -->
+              <div class="col-12 col-md-4 mb-4">
+                <div class="card p-4 h-100">
+                  <h4 class="text-bold mb-3">Project Overview</h4>
+                  <ul class="list-unstyled overview-list">
+                    <li>
+                      <h6 class="text-bold">My Role:</h6>
+                      <p class="mb-0">Group Leader</p>
+                    </li>
+                    <li>
+                      <h6 class="text-bold">Team Size:</h6>
+                      <p class="mb-0">Group Project - 12 members</p>
+                    </li>
+                    <li>
+                      <h6 class="text-bold">Tools:</h6>
+                      <p class="mb-0">Inventor, Fusion360, Blender</p>
+                    </li>
+                    <li>
+                      <h6 class="text-bold">Duration:</h6>
+                      <p class="mb-0">12 months</p>
+                    </li>
+                    <!-- New section for the achievement -->
+                    <h4 class="text-bold mb-3 mt-3">Achievements</h4>
+                    <ul class="mt-2" style="list-style-type: disc">
+                      <li>
+                        Awarded Silver Medal at the National Agricultural & Food
+                        Engineering Convention (NAFEC 2025)
+                      </li>
+                    </ul>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- The Challenge & My Role Column -->
+              <div class="col-12 col-md-8 mb-4">
+                <div class="card p-4 h-100">
+                  <h4 class="text-bold mb-3">Details</h4>
+                  <p class="text-justify">
+                    As a key member of the team, I was responsible for Project
+                    Planning and Design. My responsibilities included creating
+                    the project timeline and milestones, and I was deeply
+                    involved in designing the mobile chassis and steering
+                    system. I also contributed to developing the technical
+                    specifications, working closely with the team to ensure the
+                    prototype met our performance and safety goals.
+                  </p>
+                  <p class="text-justify mb-0">
+                    One of the primary challenges was designing a system that
+                    effectively supported the weight of the motorized cutter
+                    while maintaining maneuverability in diverse terrain. We had
+                    to meticulously calculate and integrate the spring balancer
+                    with the cutter holder to achieve the "zero-gravity" effect
+                    without restricting the user's movement. Another significant
+                    challenge was balancing the technical specifications, such
+                    as power, range, and speed, with the project's budget to
+                    produce a functional and cost-effective prototype.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- New Skills Section -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="card p-4 h-100">
+                  <h4 class="text-bold mb-3">Skills</h4>
+                  <div>
+                    <span class="skill-tag">CAD software</span>
+                    <span class="skill-tag">Mechanical Design</span>
+                    <span class="skill-tag">Prototyping</span>
+                    <span class="skill-tag">Fabrication & Manufacturing</span>
+                    <span class="skill-tag">Robotics</span>
+                    <span class="skill-tag">Mechatronics</span>
+                    <span class="skill-tag">System Integration</span>
+                    <span class="skill-tag">User Research</span>
+                    <span class="skill-tag">User Testing</span>
+                    <span class="skill-tag">Project Management</span>
+                    <span class="skill-tag">Leadership</span>
+                    <span class="skill-tag">Research & Analysis</span>
+                    <span class="skill-tag">Technical Documentation</span>
+                    <span class="skill-tag">Problem-Solving</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 3: Task Management App -->
+    <div
+      class="modal fade"
+      id="projectModal3"
+      tabindex="-1"
+      aria-labelledby="projectModal3Label"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectModal3Label">
+              Underwater Colour Correction for Enhanced Object Detection
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- Project Hero Image Section -->
+            <div class="modal-hero-img-container mb-4">
+              <img
+                src="fyp-best-project.jpg"
+                class="img-fluid"
+                alt="Underwater Colour Correction"
+              />
+            </div>
+            <!-- Project Details Section -->
+            <div class="row">
+              <!-- Project Overview Column -->
+              <div class="col-12 col-md-4 mb-4">
+                <div class="card p-4 h-100">
+                  <h4 class="text-bold mb-3">Project Overview</h4>
+                  <ul class="list-unstyled overview-list">
+                    <li>
+                      <h6 class="text-bold">My Role:</h6>
+                      <p class="mb-0">Individual Research</p>
+                    </li>
+                    <li>
+                      <h6 class="text-bold">Team Size:</h6>
+                      <p class="mb-0">Individual Project</p>
+                    </li>
+                    <li>
+                      <h6 class="text-bold">Tools:</h6>
+                      <p class="mb-0">Python, Google Colab, Github, Kaggle</p>
+                    </li>
+                    <li>
+                      <h6 class="text-bold">Duration:</h6>
+                      <p class="mb-0">12 months</p>
+                    </li>
+                    <!-- New section for the achievement -->
+                    <h4 class="text-bold mb-3 mt-3">Achievements</h4>
+                    <ul class="mt-2" style="list-style-type: disc">
+                      <li>
+                        Awarded Best FYP2 Project at the Malaysia-Japan
+                        International Institue of Malaysia (MJIIT) Final Year
+                        Project Symposium (2024/2025)
+                      </li>
+                    </ul>
+                  </ul>
+                </div>
+              </div>
+              <!-- The Challenge & My Role Column -->
+              <div class="col-12 col-md-8 mb-4">
+                <div class="card p-4 h-100">
+                  <h4 class="text-bold mb-3">Details</h4>
+                  <p class="text-justify">
+                    This was an individual research project, where I was
+                    responsible for the entire process, from literature review
+                    and methodology design to implementation and analysis. I
+                    acted as the researcher, developer, and data analyst. My key
+                    responsibilities included determined and implementing the
+                    image enhancement pipeline using targeted algorithms,
+                    including the CycleGAN model. Training the YOLO object
+                    detection model on the enhanced datasets. Conducting a
+                    comprehensive evaluation of the system's performance using
+                    relevant metrics. Documenting the entire process and
+                    analyzing the results in a detailed research report.
+                  </p>
+                  <p class="text-justify mb-0">
+                    The main challenge was effectively addressing the visual
+                    degradation specific to underwater environments and ensuring
+                    the chosen enhancement method was optimized for object
+                    detection. This required a deep understanding of multiple
+                    machine learning models and careful analysis to prove that a
+                    color-corrected image truly improved the detection accuracy.
+                    A key part of the process was meticulously preparing and
+                    annotating the underwater image dataset to ensure the models
+                    were trained on high-quality data.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- New Skills Section -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="card p-4 h-100">
+                  <h4 class="text-bold mb-3">Skills</h4>
+                  <div>
+                    <span class="skill-tag">YOLO (You Only Look Once)</span>
+                    <span class="skill-tag">CycleGAN</span>
+                    <span class="skill-tag">Image Processing</span>
+                    <span class="skill-tag">Deep Learning</span>
+                    <span class="skill-tag">Usability Testing</span>
+                    <span class="skill-tag">Object Detection</span>
+                    <span class="skill-tag">Neural Networks</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Image Enhancement</span>
+                    <span class="skill-tag">Usability Testing</span>
+                    <span class="skill-tag">Academic Research</span>
+                    <span class="skill-tag">Technical Documentation</span>
+                    <span class="skill-tag">Experimentation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JavaScript Bundle with Popper for components like navbar and dropdowns -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      xintegrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- JavaScript for search functionality -->
+    <script>
+      const searchForm = document.getElementById("searchForm");
+      const mainContent = document.querySelector("main");
+      const searchInput = document.getElementById("searchInput");
+      const searchMessageEl = document.getElementById("searchMessage");
+
+      searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+
+        if (!query) {
+          removeHighlights();
+          hideSearchMessage();
+          return;
+        }
+
+        const matchCount = highlightText(query);
+        showSearchMessage(matchCount);
+
+        const navbarToggler = document.querySelector(".navbar-toggler");
+        const navbarCollapse = document.getElementById(
+          "navbarSupportedContent"
+        );
+
+        if (navbarToggler.offsetParent !== null) {
+          if (navbarCollapse.classList.contains("show")) {
+            navbarToggler.click();
+          }
+        }
+      });
+
+      function showSearchMessage(count) {
+        if (count > 0) {
+          searchMessageEl.textContent = `${count} matches found.`;
+        } else {
+          searchMessageEl.textContent = "No matches found.";
+        }
+        searchMessageEl.classList.add("show");
+        setTimeout(hideSearchMessage, 3000);
+      }
+
+      function hideSearchMessage() {
+        searchMessageEl.classList.remove("show");
+      }
+
+      function removeHighlights() {
+        const highlightedElements = document.querySelectorAll(".highlight");
+        highlightedElements.forEach((el) => {
+          const parent = el.parentNode;
+          // Using a more robust method to unwrap the element
+          while (el.firstChild) parent.insertBefore(el.firstChild, el);
+          parent.removeChild(el);
+          parent.normalize();
+        });
+      }
+
+      function highlightText(text) {
+        removeHighlights();
+        let matchCount = 0;
+        const regex = new RegExp(text, "gi");
+        let firstHighlightFound = false;
+
+        const walker = document.createTreeWalker(
+          mainContent,
+          NodeFilter.SHOW_TEXT,
+          {
+            acceptNode: function (node) {
+              const parentTag = node.parentNode.tagName.toLowerCase();
+              return parentTag !== "script" && parentTag !== "style"
+                ? NodeFilter.FILTER_ACCEPT
+                : NodeFilter.FILTER_REJECT;
+            },
+          }
+        );
+
+        let node;
+        while ((node = walker.nextNode())) {
+          const originalText = node.nodeValue;
+          const matches = originalText.match(regex);
+          if (matches) {
+            matchCount += matches.length;
+            const newContent = originalText.replace(regex, function (match) {
+              if (!firstHighlightFound) {
+                firstHighlightFound = true;
+                return `<span class="highlight first-highlight">${match}</span>`;
+              }
+              return `<span class="highlight">${match}</span>`;
+            });
+
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = newContent;
+
+            while (tempDiv.firstChild) {
+              node.parentNode.insertBefore(tempDiv.firstChild, node);
+            }
+            node.parentNode.removeChild(node);
+          }
+        }
+
+        const firstHighlightElement =
+          document.querySelector(".first-highlight");
+        if (firstHighlightElement) {
+          firstHighlightElement.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+        }
+        return matchCount;
+      }
+    </script>
+  </body>
+</html>
