@@ -1,4 +1,5 @@
 <!doctype html>
+<!--The code as of 12th Sept, adding sticky navbar-->
 
 <html lang="en">
   <head>
@@ -61,6 +62,13 @@
       }
       .progress-bar-tools {
         background-color: #ff7043;
+      }
+      .progress-bar-mechanical {
+        background-color: #5500ff;
+      }
+      /* New color for soft skills */
+      .progress-bar-soft {
+        background-color: #ff0040;
       }
       .contact-link {
         text-decoration: none;
@@ -682,7 +690,12 @@
                     <span class="skill-tag">Figma</span>
                     <span class="skill-tag">Wireframing</span>
                     <span class="skill-tag">Prototyping</span>
+                    <span class="skill-tag">Information Architecture</span>
                     <span class="skill-tag">Interaction Design</span>
+                    <span class="skill-tag">Visual Design</span>
+                    <span class="skill-tag">User Flows & Journey Mapping</span>
+                    <span class="skill-tag">Heuristic Evaluation</span>
+                    <span class="skill-tag">Usability Testing</span>
                   </div>
                 </div>
               </div>
@@ -711,8 +724,8 @@
                     id="htmlDetails"
                     data-bs-parent="#skillsAccordion"
                   >
-                    <span class="skill-tag">HTML5</span>
-                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
                     <span class="skill-tag">Bootstrap</span>
                     <span class="skill-tag">Responsive Design</span>
                   </div>
@@ -743,9 +756,14 @@
                     id="researchDetails"
                     data-bs-parent="#skillsAccordion"
                   >
+                    <span class="skill-tag">Qualitative Research</span>
+                    <span class="skill-tag">Quantitative Research</span>
                     <span class="skill-tag">User Interviews</span>
                     <span class="skill-tag">Surveys</span>
+                    <span class="skill-tag">Contextual Inquiries</span>
+                    <span class="skill-tag">Persona Creation</span>
                     <span class="skill-tag">Usability Testing</span>
+                    <span class="skill-tag">Competitive Analysis</span>
                   </div>
                 </div>
               </div>
@@ -774,9 +792,15 @@
                     id="gaDetails"
                     data-bs-parent="#skillsAccordion"
                   >
-                    <span class="skill-tag">Data Tracking</span>
-                    <span class="skill-tag">Insights</span>
-                    <span class="skill-tag">SEO Analysis</span>
+                    <span class="skill-tag">Data Collection</span>
+                    <span class="skill-tag">Data Wrangling</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Data Interpretation</span>
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">Google Sheets</span>
+                    <span class="skill-tag">Google Analytics</span>
+                    <span class="skill-tag">Dashboard Reporting</span>
+                    <span class="skill-tag">Tableau</span>
                   </div>
                 </div>
               </div>
@@ -806,8 +830,14 @@
                     data-bs-parent="#skillsAccordion"
                   >
                     <span class="skill-tag">CAD</span>
+                    <span class="skill-tag">Prototyping</span>
                     <span class="skill-tag">Simulation</span>
+                    <span class="skill-tag">Fabrication & Manufacturing</span>
                     <span class="skill-tag">Product Design</span>
+                    <span class="skill-tag">Robotics</span>
+                    <span class="skill-tag">Mechatronics</span>
+                    <span class="skill-tag">Thermodynamics</span>
+                    <span class="skill-tag">FEA Analysis</span>
                   </div>
                 </div>
               </div>
@@ -836,7 +866,10 @@
                     id="qaDetails"
                     data-bs-parent="#skillsAccordion"
                   >
+                    <span class="skill-tag">Visual Inspection</span>
+                    <span class="skill-tag">Dimensional Evaluation</span>
                     <span class="skill-tag">ISO 9001</span>
+                    <span class="skill-tag">Lean Six Sigma</span>
                     <span class="skill-tag">Testing</span>
                     <span class="skill-tag">Defect Analysis</span>
                   </div>
@@ -870,6 +903,41 @@
                     <span class="skill-tag">Reports</span>
                     <span class="skill-tag">Manuals</span>
                     <span class="skill-tag">Process Flow</span>
+                    <span class="skill-tag">Drawings</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Soft Skills -->
+              <div class="col-md-6">
+                <div class="card p-3">
+                  <div
+                    class="cursor-pointer"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#softSkillsDetails"
+                    data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="Click to view"
+                  >
+                    <p class="progress-bar-title">Soft Skills</p>
+                    <div class="progress" style="height: 15px">
+                      <div
+                        class="progress-bar progress-bar-soft"
+                        style="width: 85%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="collapse mt-2"
+                    id="softSkillsDetails"
+                    data-bs-parent="#skillsAccordion"
+                  >
+                    <span class="skill-tag">Problem-Solving</span>
+                    <span class="skill-tag">Critical Thinking</span>
+                    <span class="skill-tag">Team Collaboration</span>
+                    <span class="skill-tag">Adaptability</span>
+                    <span class="skill-tag">Time Management</span>
+                    <span class="skill-tag">Communication</span>
                   </div>
                 </div>
               </div>
