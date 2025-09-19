@@ -1,7 +1,8 @@
 # UX Designer Portfolio
----
+
 
 Welcome to my portfolio! This project showcases my skills in UX design,  and mechanical engineering. It's designed to provide a comprehensive, intuitive, and efficient experience for recruiters, hiring managers, and potential collaborators.
+---
 
 ## Key Features
 --
@@ -34,7 +35,7 @@ The search bar gives the user Control and improves Findability. It empowers visi
 
 9. **Visual Consistency**
 This improvement demonstrates the Aesthetic-Usability Effect. By ensuring all project card images have a uniform height, I've created a more polished, professional, and visually consistent layout. This makes the page easier to scan and enhances the user's perception of the portfolio's quality.
-
+---
 
 
 
