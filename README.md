@@ -1,7 +1,7 @@
 # UX Designer Portfolio
 
-
 Welcome to my portfolio! This project showcases my skills in UX design,  and mechanical engineering. It's designed to provide a comprehensive, intuitive, and efficient experience for recruiters, hiring managers, and potential collaborators.
+
 ---
 
 ## Key Features
