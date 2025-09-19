@@ -38,7 +38,6 @@ This portfolio is built with the user in mind. Here's a breakdown of the key fea
 ---
 
 ## Technologies Used
--- 
   - Bootstrap: The core framework for the responsive layout and components.
   - HTML & CSS: The foundation for the website's structure and styling.
   - JavaScript: Powers the interactive elements, including the search function, modals, and toast messages.
@@ -47,10 +46,8 @@ This portfolio is built with the user in mind. Here's a breakdown of the key fea
 ---
 
 ### Future Improvements
---
-
-    - Add more project case studies with high-fidelity mockups.
-    -Implement a full contact form for direct inquiries.
+  - Add more project case studies with high-fidelity mockups.
+  - Implement a full contact form for direct inquiries.
 
 ---
 
