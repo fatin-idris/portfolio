@@ -9,8 +9,7 @@ Welcome to my portfolio! This project showcases my skills in UX design,  and mec
 This portfolio is built with the user in mind. Here's a breakdown of the key features and the UX design principles behind them.
 
 1. **Sticky Navbar**
-UX Principle: Navigation Efficiency & User Control.
-This feature addresses the UX principle of Navigation Efficiency. By keeping the navigation bar visible as a user scrolls, key links are always within reach. This saves time and provides a seamless way to explore the portfolio without having to scroll back to the top.
+  - This feature addresses the UX principle of Navigation Efficiency. By keeping the navigation bar visible as a user scrolls, key links are always within reach. This saves time and provides a seamless way to explore the portfolio without having to scroll back to the top.
 
 2. **"More" Dropdown Link**
 This is a core example of Progressive Disclosure. The "More" link groups less-frequent links into a clean, simple dropdown menu. This prevents the main navigation from being cluttered, allowing the user to focus on the most important links first.
@@ -35,19 +34,24 @@ The search bar gives the user Control and improves Findability. It empowers visi
 
 9. **Visual Consistency**
 This improvement demonstrates the Aesthetic-Usability Effect. By ensuring all project card images have a uniform height, I've created a more polished, professional, and visually consistent layout. This makes the page easier to scan and enhances the user's perception of the portfolio's quality.
+
 ---
-
-
 
 ## Technologies Used
 -- 
-Bootstrap: The core framework for the responsive layout and components.
--- HTML & CSS: The foundation for the website's structure and styling.
--- JavaScript: Powers the interactive elements, including the search function, modals, and toast messages.
--- Font Awesome: For all icons used throughout the site.
+  - Bootstrap: The core framework for the responsive layout and components.
+  - HTML & CSS: The foundation for the website's structure and styling.
+  - JavaScript: Powers the interactive elements, including the search function, modals, and toast messages.
+  - Font Awesome: For all icons used throughout the site.
 
-Future Improvements
+---
+
+### Future Improvements
+--
+
 -Add more project case studies with high-fidelity mockups.
 -Implement a full contact form for direct inquiries.
+
+---
 
 I hope this overview helps you understand the design decisions and principles behind my work.
