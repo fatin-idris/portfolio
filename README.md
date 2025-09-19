@@ -46,8 +46,8 @@ This portfolio is built with the user in mind. Here's a breakdown of the key fea
 ---
 
 ### Future Improvements
-  - Add more project case studies with high-fidelity mockups.
-  - Implement a full contact form for direct inquiries.
+- Add more project case studies with high-fidelity mockups.
+- Implement a full contact form for direct inquiries.
 
 ---
 
