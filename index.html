@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,15 +16,22 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      xintegrity="sha512-Fo3rlrZj/k7Tj+A4w6/k9p/1W/88/p+p/a9W0zL15jL4n8fA7FzM8P3d2x9G9R5A/m7D/8Fw=="
+      xintegrity="sha512-Fo3rlrZj/k7Tj+A4w6/k9p/1W/88/p+p/a9W0zL15jL4n8fA7FzM8P3d2x9G9R5A/m7D/8Fw==`"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
     <style>
       body {
         background-color: #f5f3ef;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, sans-serif;
+        /* Add padding to the top of the body to prevent content from being hidden behind the fixed navbar */
+        padding-top: 56px;
+      }
+      /* This is the new CSS rule to prevent content from being hidden behind the sticky header */
+      html {
+        scroll-padding-top: 56px; /* Height of the sticky navbar */
       }
       .header-section {
         background-color: #e9e4d9;
@@ -36,10 +44,7 @@
         border: 4px solid #fff;
         border-radius: 50%;
       }
-      .progress-bar-title {
-        font-size: 0.9rem;
-        margin-bottom: 0.25rem;
-      }
+
       .list-group-item h5 {
         font-weight: 600;
       }
@@ -93,7 +98,9 @@
         text-decoration: none;
         color: inherit;
         display: block;
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        transition:
+          transform 0.2s ease-in-out,
+          box-shadow 0.2s ease-in-out;
       }
       .project-card:hover {
         transform: translateY(-5px);
@@ -113,7 +120,9 @@
         z-index: 1000;
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease;
       }
       #searchMessage.show {
         opacity: 1;
@@ -167,12 +176,74 @@
         height: 300px;
         object-fit: cover;
       }
+      /* smooth collapse */
+      .collapse {
+        transition: height 0.35s ease;
+      }
+
+      /* clickable area */
+      .cursor-pointer {
+        cursor: pointer;
+        border-radius: 0.5rem;
+        padding: 0.15rem;
+        transition: background-color 0.18s ease;
+      }
+
+      /* hover highlight */
+      .cursor-pointer:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .custom-tooltip {
+        --bs-tooltip-bg: #000000; /* violet (Bootstrap docs example) */
+        --bs-tooltip-color: #fff;
+      }
+
+      .more-link {
+        font-weight: bold;
+        text-decoration: none;
+        color: #007bff; /* Bootstrap primary blue */
+        transition: color 0.2s ease;
+      }
+
+      .more-link:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+
+      /* New CSS for the Calendly toast */
+      .calendly-toast {
+        background-color: #000;
+        color: #fff;
+        width: fit-content;
+      }
+      .calendly-toast .btn-close-white {
+        background: transparent
+          url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
+          center/1em auto no-repeat;
+        filter: brightness(0) invert(1);
+      }
+      .calendly-toast a {
+        text-decoration: none;
+        color: #fff;
+      }
+      /* Reduce spacing between toast header and body */
+      .calendly-toast .toast-header {
+        padding-bottom: 0.1rem;
+      }
+      .calendly-toast .toast-body {
+        padding-top: 0.1rem;
+      }
+      /* The toast container is now positioned higher up */
+      .toast-container {
+        bottom: 75px !important;
+      }
     </style>
   </head>
   <body>
     <!-- Navbar -->
     <nav
-      class="navbar navbar-expand-lg"
+      class="navbar navbar-expand-lg fixed-top"
       style="background-color: #4b4b4b"
       data-bs-theme="dark"
     >
@@ -217,6 +288,9 @@
                   <a class="dropdown-item" href="#experience">Experience</a>
                 </li>
                 <li><a class="dropdown-item" href="#projects">Project</a></li>
+                <li>
+                  <a class="dropdown-item" href="#skills">Skills</a>
+                </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a class="dropdown-item" href="#contact">Contact</a>
@@ -361,7 +435,7 @@
       </div>
 
       <!-- New row for the expanded Experience section -->
-      <div class="row">
+      <div class="row mb-4">
         <div class="col-lg-12">
           <div class="card p-4 mb-4" id="experience">
             <h4 class="card-title text-bold">Experience</h4>
@@ -431,8 +505,8 @@
             <h4 class="card-title text-bold">Project</h4>
             <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
               <!-- Project 1 -->
-              <div class="col">
-                <a
+              <div class="col d-flex">
+                <div
                   class="project-card"
                   data-bs-toggle="modal"
                   data-bs-target="#projectModal1"
@@ -444,10 +518,12 @@
                       alt="Portfolio Website Project"
                     />
                     <div class="card-body">
-                      <h5 class="card-title">
-                        Responsive Portfolio Website
-                        <small class="text-muted float-end">Aug 2025</small>
-                      </h5>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <h5 class="card-title">Responsive Portfolio Website</h5>
+                        <small class="text-muted">Aug 2025</small>
+                      </div>
                       <p class="card-text text-justify mt-2">
                         Designed and developed a personal portfolio website
                         using HTML, CSS, and Bootstrap. Implemented responsive
@@ -456,14 +532,25 @@
                         design projects and case studies, highlighting the
                         end-to-end UX process.
                       </p>
+                      <div class="text-end">
+                        <a
+                          class="more-link"
+                          data-bs-toggle="tooltip"
+                          data-bs-title="View project details"
+                          data-bs-placement="left"
+                          onclick="event.stopPropagation();"
+                        >
+                          More
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </a>
+                </div>
               </div>
 
               <!-- Project 2 -->
-              <div class="col">
-                <a
+              <div class="col d-flex">
+                <div
                   class="project-card"
                   data-bs-toggle="modal"
                   data-bs-target="#projectModal2"
@@ -475,10 +562,12 @@
                       alt="Zero-G Harvester"
                     />
                     <div class="card-body">
-                      <h5 class="card-title">
-                        Zero-G Harvester
-                        <small class="text-muted float-end">Jan 2025</small>
-                      </h5>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <h5 class="card-title">Zero-G Harvester</h5>
+                        <small class="text-muted">Jan 2025</small>
+                      </div>
                       <p class="card-text text-justify mt-2">
                         Designed and prototyped an all-terrain, battery-powered
                         harvester to reduce worker fatigue and increase
@@ -488,14 +577,25 @@
                         navigation and improved ergonomics for plantation
                         workers.
                       </p>
+                      <div class="text-end">
+                        <a
+                          class="more-link"
+                          data-bs-toggle="tooltip"
+                          data-bs-title="View project details"
+                          data-bs-placement="left"
+                          onclick="event.stopPropagation();"
+                        >
+                          More
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </a>
+                </div>
               </div>
 
               <!-- Project 3 -->
-              <div class="col">
-                <a
+              <div class="col d-flex">
+                <div
                   class="project-card"
                   data-bs-toggle="modal"
                   data-bs-target="#projectModal3"
@@ -507,11 +607,15 @@
                       alt="Underwater Colour Correction"
                     />
                     <div class="card-body">
-                      <h5 class="card-title">
-                        Underwater Colour Correction for Enhanced Object
-                        Detection
-                        <small class="text-muted float-end">Feb 2025</small>
-                      </h5>
+                      <div
+                        class="d-flex justify-content-between align-items-center"
+                      >
+                        <h5 class="card-title">
+                          Underwater Colour Correction for Enhanced Object
+                          Detection
+                        </h5>
+                        <small class="text-muted">Feb 2025</small>
+                      </div>
                       <p class="card-text text-justify mt-2">
                         Developed and determined algorithms that uses deep
                         learning and advanced image processing to enhance
@@ -522,9 +626,20 @@
                         object identification in challenging underwater
                         environments.
                       </p>
+                      <div class="text-end">
+                        <a
+                          class="more-link"
+                          data-bs-toggle="tooltip"
+                          data-bs-title="View project details"
+                          data-bs-placement="left"
+                          onclick="event.stopPropagation();"
+                        >
+                          More
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -533,105 +648,233 @@
     </main>
 
     <!-- Skills Section -->
-    <section class="container mb-5">
-      <div class="row">
+    <section class="container mb-5" id="skills">
+      <div class="row mb-4">
         <div class="col-lg-12">
           <div class="card p-4">
             <h4 class="card-title text-bold mb-4">Skills</h4>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <p class="progress-bar-title">UX/UI Design</p>
-                <div class="progress" style="height: 15px">
+
+            <div id="skillsAccordion" class="row gy-4">
+              <!-- UX/UI Design -->
+              <div class="col-md-6">
+                <div class="card p-3">
                   <div
-                    class="progress-bar progress-bar-ux"
-                    role="progressbar"
-                    style="width: 90%"
-                    aria-valuenow="90"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
+                    class="cursor-pointer"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#uxuiDetails"
+                    data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="Click to view"
+                  >
+                    <p class="progress-bar-title">UX/UI Design</p>
+                    <div class="progress" style="height: 15px">
+                      <div
+                        class="progress-bar progress-bar-ux"
+                        style="width: 90%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="collapse mt-2"
+                    id="uxuiDetails"
+                    data-bs-parent="#skillsAccordion"
+                  >
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">Wireframing</span>
+                    <span class="skill-tag">Prototyping</span>
+                    <span class="skill-tag">Interaction Design</span>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <p class="progress-bar-title">HTML/CSS</p>
-                <div class="progress" style="height: 15px">
+
+              <!-- HTML / CSS -->
+              <div class="col-md-6">
+                <div class="card p-3">
                   <div
-                    class="progress-bar progress-bar-tools"
-                    role="progressbar"
-                    style="width: 85%"
-                    aria-valuenow="85"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
+                    class="cursor-pointer"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#htmlDetails"
+                    data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="Click to view"
+                  >
+                    <p class="progress-bar-title">HTML / CSS</p>
+                    <div class="progress" style="height: 15px">
+                      <div
+                        class="progress-bar progress-bar-tools"
+                        style="width: 85%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="collapse mt-2"
+                    id="htmlDetails"
+                    data-bs-parent="#skillsAccordion"
+                  >
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">Responsive Design</span>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <p class="progress-bar-title">User Research</p>
-                <div class="progress" style="height: 15px">
+
+              <!-- User Research -->
+              <div class="col-md-6">
+                <div class="card p-3">
                   <div
-                    class="progress-bar progress-bar-ux"
-                    role="progressbar"
-                    style="width: 80%"
-                    aria-valuenow="80"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
+                    class="cursor-pointer"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#researchDetails"
+                    data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="Click to view"
+                  >
+                    <p class="progress-bar-title">User Research</p>
+                    <div class="progress" style="height: 15px">
+                      <div
+                        class="progress-bar progress-bar-ux"
+                        style="width: 80%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="collapse mt-2"
+                    id="researchDetails"
+                    data-bs-parent="#skillsAccordion"
+                  >
+                    <span class="skill-tag">User Interviews</span>
+                    <span class="skill-tag">Surveys</span>
+                    <span class="skill-tag">Usability Testing</span>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <p class="progress-bar-title">Google Analytics</p>
-                <div class="progress" style="height: 15px">
+
+              <!-- Google Analytics -->
+              <div class="col-md-6">
+                <div class="card p-3">
                   <div
-                    class="progress-bar progress-bar-tools"
-                    role="progressbar"
-                    style="width: 75%"
-                    aria-valuenow="75"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
+                    class="cursor-pointer"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#gaDetails"
+                    data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="Click to view"
+                  >
+                    <p class="progress-bar-title">Google Analytics</p>
+                    <div class="progress" style="height: 15px">
+                      <div
+                        class="progress-bar progress-bar-tools"
+                        style="width: 75%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="collapse mt-2"
+                    id="gaDetails"
+                    data-bs-parent="#skillsAccordion"
+                  >
+                    <span class="skill-tag">Data Tracking</span>
+                    <span class="skill-tag">Insights</span>
+                    <span class="skill-tag">SEO Analysis</span>
+                  </div>
                 </div>
               </div>
-              <!-- New Mechanical Skills -->
-              <div class="col-md-6 mb-3">
-                <p class="progress-bar-title">Mechanical Engineering</p>
-                <div class="progress" style="height: 15px">
+
+              <!-- Mechanical Engineering -->
+              <div class="col-md-6">
+                <div class="card p-3">
                   <div
-                    class="progress-bar progress-bar-mechanical"
-                    role="progressbar"
-                    style="width: 90%"
-                    aria-valuenow="90"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
+                    class="cursor-pointer"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mechDetails"
+                    data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="Click to view"
+                  >
+                    <p class="progress-bar-title">Mechanical Engineering</p>
+                    <div class="progress" style="height: 15px">
+                      <div
+                        class="progress-bar progress-bar-mechanical"
+                        style="width: 90%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="collapse mt-2"
+                    id="mechDetails"
+                    data-bs-parent="#skillsAccordion"
+                  >
+                    <span class="skill-tag">CAD</span>
+                    <span class="skill-tag">Simulation</span>
+                    <span class="skill-tag">Product Design</span>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <p class="progress-bar-title">Quality Assurance</p>
-                <div class="progress" style="height: 15px">
+
+              <!-- Quality Assurance -->
+              <div class="col-md-6">
+                <div class="card p-3">
                   <div
-                    class="progress-bar progress-bar-mechanical"
-                    role="progressbar"
-                    style="width: 85%"
-                    aria-valuenow="85"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
+                    class="cursor-pointer"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#qaDetails"
+                    data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="Click to view"
+                  >
+                    <p class="progress-bar-title">Quality Assurance</p>
+                    <div class="progress" style="height: 15px">
+                      <div
+                        class="progress-bar progress-bar-mechanical"
+                        style="width: 85%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="collapse mt-2"
+                    id="qaDetails"
+                    data-bs-parent="#skillsAccordion"
+                  >
+                    <span class="skill-tag">ISO 9001</span>
+                    <span class="skill-tag">Testing</span>
+                    <span class="skill-tag">Defect Analysis</span>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <p class="progress-bar-title">Technical Documentation</p>
-                <div class="progress" style="height: 15px">
+
+              <!-- Technical Documentation -->
+              <div class="col-md-6">
+                <div class="card p-3">
                   <div
-                    class="progress-bar progress-bar-mechanical"
-                    role="progressbar"
-                    style="width: 80%"
-                    aria-valuenow="80"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
+                    class="cursor-pointer"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#docDetails"
+                    data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="Click to view"
+                  >
+                    <p class="progress-bar-title">Technical Documentation</p>
+                    <div class="progress" style="height: 15px">
+                      <div
+                        class="progress-bar progress-bar-mechanical"
+                        style="width: 80%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div
+                    class="collapse mt-2"
+                    id="docDetails"
+                    data-bs-parent="#skillsAccordion"
+                  >
+                    <span class="skill-tag">Reports</span>
+                    <span class="skill-tag">Manuals</span>
+                    <span class="skill-tag">Process Flow</span>
+                  </div>
                 </div>
               </div>
             </div>
+            <!-- end skillsAccordion -->
           </div>
         </div>
       </div>
@@ -658,20 +901,20 @@
                 <i class="fab fa-linkedin fa-2x"></i>
               </a>
               <a
+                href="https://github.com/fatin-idris"
+                target="_blank"
+                class="text-dark mx-3"
+                aria-label="GitHub Profile"
+              >
+                <i class="fab fa-github fa-2x"></i>
+              </a>
+              <a
                 href="mailto:norfatinhazirahmohdidris@yahoo.com"
                 target="_blank"
                 class="text-dark mx-3"
                 aria-label="Email"
               >
                 <i class="fas fa-envelope fa-2x"></i>
-              </a>
-              <a
-                href="https://calendly.com/norfatinhazirahmohdidris"
-                target="_blank"
-                class="text-dark mx-3"
-                aria-label="Book an Appointment"
-              >
-                <i class="fas fa-calendar-check fa-2x"></i>
               </a>
             </div>
           </div>
@@ -700,6 +943,14 @@
               <i class="fab fa-linkedin fa-lg"></i>
             </a>
             <a
+              href="https://github.com/fatin-idris"
+              target="_blank"
+              class="text-white mx-2"
+              aria-label="GitHub Profile"
+            >
+              <i class="fab fa-github fa-lg"></i>
+            </a>
+            <a
               href="mailto:norfatinhazirahmohdidris@yahoo.com"
               target="_blank"
               class="text-white mx-2"
@@ -722,6 +973,38 @@
 
     <!-- Search message popup -->
     <div id="searchMessage"></div>
+
+    <!-- Calendly toast container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="calendlyToast"
+        class="toast calendly-toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-autohide="false"
+      >
+        <div class="toast-header calendly-toast border-0">
+          <i class="fas fa-calendar-check me-2"></i>
+          <strong style="white-space: nowrap"
+            >Looking for a UX designer?</strong
+          >
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body py-2">
+          <a
+            href="https://calendly.com/norfatinhazirahmohdidris"
+            target="_blank"
+            ><em><u>Book</u></em> a quick call with me.</a
+          >
+        </div>
+      </div>
+    </div>
 
     <!-- Modals for each project to show detailed content -->
 
@@ -888,15 +1171,13 @@
                       <h6 class="text-bold">Duration:</h6>
                       <p class="mb-0">12 months</p>
                     </li>
-                    <!-- New section for the achievement -->
-                    <h4 class="text-bold mb-3 mt-3">Achievements</h4>
-                    <ul class="mt-2" style="list-style-type: disc">
-                      <li>
-                        Awarded Silver Medal at the National Agricultural & Food
-                        Engineering Convention (NAFEC 2025)
-                      </li>
-                    </ul>
                   </ul>
+                  <!-- New section for the achievement -->
+                  <h4 class="text-bold mb-3 mt-3">Achievements</h4>
+                  <p>
+                    Awarded Silver Medal at the National Agricultural & Food
+                    Engineering Convention (NAFEC 2025)
+                  </p>
                 </div>
               </div>
 
@@ -1011,16 +1292,14 @@
                       <h6 class="text-bold">Duration:</h6>
                       <p class="mb-0">12 months</p>
                     </li>
-                    <!-- New section for the achievement -->
-                    <h4 class="text-bold mb-3 mt-3">Achievements</h4>
-                    <ul class="mt-2" style="list-style-type: disc">
-                      <li>
-                        Awarded Best FYP2 Project at the Malaysia-Japan
-                        International Institue of Malaysia (MJIIT) Final Year
-                        Project Symposium (2024/2025)
-                      </li>
-                    </ul>
                   </ul>
+                  <!-- New section for the achievement -->
+                  <h4 class="text-bold mb-3 mt-3">Achievements</h4>
+                  <p>
+                    Awarded Best FYP2 Project at the Malaysia-Japan
+                    International Institue of Malaysia (MJIIT) Final Year
+                    Project Symposium (2024/2025)
+                  </p>
                 </div>
               </div>
               <!-- The Challenge & My Role Column -->
@@ -1089,14 +1368,52 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- JavaScript for collapsing skills when clicking outside -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const skillsSection = document.getElementById('skillsAccordion');
+        if (!skillsSection) return;
+
+        // outside click: close all open collapses
+        document.addEventListener('click', function (e) {
+          if (!skillsSection.contains(e.target)) {
+            const openCollapses =
+              skillsSection.querySelectorAll('.collapse.show');
+            openCollapses.forEach((c) => {
+              const inst = bootstrap.Collapse.getInstance(c);
+              if (inst) inst.hide();
+            });
+          }
+        });
+
+        // This is the new script to close the navbar on link click
+        const dropdownLinks = document.querySelectorAll(
+          '.dropdown-menu .dropdown-item'
+        );
+        const navbarCollapse = document.getElementById(
+          'navbarSupportedContent'
+        );
+        const navbarToggler = document.querySelector('.navbar-toggler');
+
+        dropdownLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            // Check if the navbar is currently open (on mobile)
+            if (navbarCollapse.classList.contains('show')) {
+              navbarToggler.click(); // Programmatically trigger a click to close it
+            }
+          });
+        });
+      });
+    </script>
+
     <!-- JavaScript for search functionality -->
     <script>
-      const searchForm = document.getElementById("searchForm");
-      const mainContent = document.querySelector("main");
-      const searchInput = document.getElementById("searchInput");
-      const searchMessageEl = document.getElementById("searchMessage");
+      const searchForm = document.getElementById('searchForm');
+      const mainContent = document.querySelector('main');
+      const searchInput = document.getElementById('searchInput');
+      const searchMessageEl = document.getElementById('searchMessage');
 
-      searchForm.addEventListener("submit", function (e) {
+      searchForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const query = searchInput.value.trim();
 
@@ -1109,13 +1426,13 @@
         const matchCount = highlightText(query);
         showSearchMessage(matchCount);
 
-        const navbarToggler = document.querySelector(".navbar-toggler");
+        const navbarToggler = document.querySelector('.navbar-toggler');
         const navbarCollapse = document.getElementById(
-          "navbarSupportedContent"
+          'navbarSupportedContent'
         );
 
         if (navbarToggler.offsetParent !== null) {
-          if (navbarCollapse.classList.contains("show")) {
+          if (navbarCollapse.classList.contains('show')) {
             navbarToggler.click();
           }
         }
@@ -1125,21 +1442,20 @@
         if (count > 0) {
           searchMessageEl.textContent = `${count} matches found.`;
         } else {
-          searchMessageEl.textContent = "No matches found.";
+          searchMessageEl.textContent = 'No matches found.';
         }
-        searchMessageEl.classList.add("show");
+        searchMessageEl.classList.add('show');
         setTimeout(hideSearchMessage, 3000);
       }
 
       function hideSearchMessage() {
-        searchMessageEl.classList.remove("show");
+        searchMessageEl.classList.remove('show');
       }
 
       function removeHighlights() {
-        const highlightedElements = document.querySelectorAll(".highlight");
+        const highlightedElements = document.querySelectorAll('.highlight');
         highlightedElements.forEach((el) => {
           const parent = el.parentNode;
-          // Using a more robust method to unwrap the element
           while (el.firstChild) parent.insertBefore(el.firstChild, el);
           parent.removeChild(el);
           parent.normalize();
@@ -1149,7 +1465,7 @@
       function highlightText(text) {
         removeHighlights();
         let matchCount = 0;
-        const regex = new RegExp(text, "gi");
+        const regex = new RegExp(text, 'gi');
         let firstHighlightFound = false;
 
         const walker = document.createTreeWalker(
@@ -1158,7 +1474,7 @@
           {
             acceptNode: function (node) {
               const parentTag = node.parentNode.tagName.toLowerCase();
-              return parentTag !== "script" && parentTag !== "style"
+              return parentTag !== 'script' && parentTag !== 'style'
                 ? NodeFilter.FILTER_ACCEPT
                 : NodeFilter.FILTER_REJECT;
             },
@@ -1179,7 +1495,7 @@
               return `<span class="highlight">${match}</span>`;
             });
 
-            const tempDiv = document.createElement("div");
+            const tempDiv = document.createElement('div');
             tempDiv.innerHTML = newContent;
 
             while (tempDiv.firstChild) {
@@ -1190,15 +1506,77 @@
         }
 
         const firstHighlightElement =
-          document.querySelector(".first-highlight");
+          document.querySelector('.first-highlight');
         if (firstHighlightElement) {
           firstHighlightElement.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
+            behavior: 'smooth',
+            block: 'center',
           });
         }
         return matchCount;
       }
+    </script>
+
+    <!-- JavaScript for tooltips -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Initialize tooltips for the skills section
+        const skillsTooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-custom-class]')
+        );
+        skillsTooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl, {
+            trigger: 'hover',
+            container: 'body',
+          });
+        });
+
+        // Initialize tooltips for the "More" links only
+        const moreLinkTooltipTriggerList = [].slice.call(
+          document.querySelectorAll('.more-link')
+        );
+        moreLinkTooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        // New JavaScript for the Calendly toast
+        const calendlyToastEl = document.getElementById('calendlyToast');
+        const skillsSection = document.getElementById('skills');
+        const contactSection = document.getElementById('contact');
+        if (calendlyToastEl && skillsSection && contactSection) {
+          const calendlyToast = new bootstrap.Toast(calendlyToastEl);
+          let isToastVisible = false;
+          let lastScrollY = window.scrollY;
+
+          window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            // Check if scrolling down
+            if (currentScrollY > lastScrollY) {
+              const skillsRect = skillsSection.getBoundingClientRect();
+              const contactRect = contactSection.getBoundingClientRect();
+
+              // Check if the skills or contact section is visible in the viewport
+              const isSkillsVisible =
+                skillsRect.top <= window.innerHeight && skillsRect.bottom >= 0;
+              const isContactVisible =
+                contactRect.top <= window.innerHeight &&
+                contactRect.bottom >= 0;
+
+              if ((isSkillsVisible || isContactVisible) && !isToastVisible) {
+                calendlyToast.show();
+                isToastVisible = true;
+              }
+            }
+            lastScrollY = currentScrollY;
+          });
+
+          // Reset the state when the toast is hidden (e.g., when the user closes it)
+          calendlyToastEl.addEventListener('hidden.bs.toast', () => {
+            isToastVisible = false;
+          });
+        }
+      });
     </script>
   </body>
 </html>
