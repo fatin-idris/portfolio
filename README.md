@@ -1,8 +1,9 @@
-### UX Designer Portfolio
---
+# UX Designer Portfolio
+---
+
 Welcome to my portfolio! This project showcases my skills in UX design,  and mechanical engineering. It's designed to provide a comprehensive, intuitive, and efficient experience for recruiters, hiring managers, and potential collaborators.
 
-# Key Features
+## Key Features
 --
 This portfolio is built with the user in mind. Here's a breakdown of the key features and the UX design principles behind them.
 
@@ -37,7 +38,7 @@ This improvement demonstrates the Aesthetic-Usability Effect. By ensuring all pr
 
 
 
-Technologies Used
+## Technologies Used
 -- 
 Bootstrap: The core framework for the responsive layout and components.
 -- HTML & CSS: The foundation for the website's structure and styling.
